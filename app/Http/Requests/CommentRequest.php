@@ -24,6 +24,7 @@ class CommentRequest extends FormRequest
     {
         return [
             'body'=>'required',
+            'photo'=>'image',
             'user_id'=>'required|integer',
             'post_id'=>'required|integer',
             'comment_id'=>'required|integer'

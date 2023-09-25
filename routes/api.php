@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AdminController;
+use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\CommentController;
 use App\Http\Controllers\api\PostController;
 use App\Http\Controllers\api\ReplyController;
@@ -75,4 +76,11 @@ Route::middleware('jwt.verify')->controller(UserController::class)->group(functi
 
 Route::middleware(['jwt.verify','admin'])->controller(AdminController::class)->group(function(){
    Route::post('admins/block')->name('admins.block');
+});
+
+Route::middleware(['jwt.verify','admin'])->controller(CategoryController::class)->group(function(){
+    Route::post('categories/store','store')->name('categories.store');
+    Route::get('categories/{comment_id}','index')->name('categories');
+    Route::put('categories/update/{id}','update')->name('categories.update');
+    Route::delete('categories/delete/{id}','delete')->name('categories.delete');
 });
