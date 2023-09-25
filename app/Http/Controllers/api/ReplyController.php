@@ -26,6 +26,8 @@ class ReplyController extends Controller
     // show replies for a comment
     public function index($comment_id){
         $replies=Reply::where('comment_id',$comment_id)->get();
+
+        //check if replies
         if($replies){
             return $this->apiResponse($replies,'Replies retrieved successfully',200);
         }
@@ -37,7 +39,14 @@ class ReplyController extends Controller
     // update a reply
     public function update(ReplyRequest $request,$id){
         $reply=Reply::find($id);
+
+        // check if reply
         if($reply){
+
+            // check if user is reply owner
+            if(Auth()->User()->id!==$reply->user_id){
+                return $this->apiResponse(null,'Unauthorized',403);
+            }
             $reply->update([
                 'body'=>$request->body,
                 'photo'=>$request->photo
@@ -53,7 +62,14 @@ class ReplyController extends Controller
     // delete a reply
     public function delete($id){
         $reply=Reply::find($id);
+
+        // check if reply
         if($reply){
+
+            // check if user isn't reply owner
+            if(Auth()->User()->id!==$reply->user_id){
+                return $this->apiResponse(null,'Unauthorized',403);
+            }
             $reply->delete();
             return $this->apiResponse(null,'Reply deleted successfully',204);
         }
@@ -64,10 +80,21 @@ class ReplyController extends Controller
 
     // store a like
     public function like(ReplyRequest $request){
+
+        // check if user already liked post
+        $existing_like = ReplyLike::where('user_id', Auth()->User()->id)
+            ->where('reply_id', $request->reply_id)
+            ->first();
+
+        // if like exists
+        if($existing_like){
+            $existing_like->delete();
+            return $this->apiResponse(null,'Reply unliked successfully',200);
+        }
         $like=ReplyLike::create([
             'user_id'=>Auth()->User()->id,
             'reply_id'=>$request->reply_id
         ]);
-        return $this->apiResponse($like,'Comment liked successfully',200);
+        return $this->apiResponse($like,'Reply liked successfully',200);
     }
 }

@@ -9,7 +9,6 @@ use App\Models\PostLike;
 use App\Models\PostView;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponseTrait;
-use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -30,7 +29,9 @@ class PostController extends Controller
 
     // show all posts
     public function index(){
-        $posts=Post::all();
+        $posts=Post::where('user_id')->get();
+
+        //check if posts
         if($posts){
             return $this->apiResponse($posts,'Posts retrieved successfully',200);
         }
@@ -43,9 +44,13 @@ class PostController extends Controller
     public function show($id){
         $post=Post::find($id);
 
+        // check if post
         if($post){
-            // using view method
-            $this->view($id);
+            // checks if user isn't post owner
+            if(Auth()->User()->id!==$post->user_id){
+                // using view method
+                $this->view($id);
+            }
             return $this->apiResponse($post,'Post retrieved successfully',200);
         }
         else{
@@ -55,21 +60,41 @@ class PostController extends Controller
 
     // update a post
     public function update(PostRequest $request,$id){
-        Post::find($id)->update([
-            'title'=>$request->title,
-            'body'=>$request->body,
-            'user_id'=>Auth()->User()->id,
-            'category_id'=>$request->category_id,
-            'photo'=>$request->photo
-        ]);
-        $updated_post=Post::find($id);
-        return $this->apiResponse($updated_post,'Post updated successfully',200);
+        $post=Post::find($id);
+
+        // check if post
+        if($post){
+
+            // check if user isn't post owner
+            if(Auth()->User()->id!==$post->user_id){
+                return $this->apiResponse(null,'Unauthorized',403);
+            }
+            $post->update([
+                'title'=>$request->title,
+                'body'=>$request->body,
+                'user_id'=>Auth()->User()->id,
+                'category_id'=>$request->category_id,
+                'photo'=>$request->photo
+            ]);
+            $updated_post=Post::find($id);
+            return $this->apiResponse($updated_post,'Post updated successfully',200);
+        }
+        else{
+            return $this->apiResponse(null,'Post not found',404);
+        }
     }
 
     // delete a post
     public function delete($id){
         $post=Post::find($id);
+
+        // check if post
         if($post){
+
+            // check if user isn't post owner
+            if(Auth()->User()->id!==$post->user_id){
+                return $this->apiResponse(null,'Unauthorized',403);
+            }
             $post->delete();
             return $this->apiResponse(null,'Post deleted successfully',204);
         }
@@ -87,6 +112,17 @@ class PostController extends Controller
     }
     // store a like
     public function like(PostRequest $request){
+
+        // check if user already liked post
+        $existing_like = PostLike::where('user_id', Auth()->User()->id)
+            ->where('post_id', $request->post_id)
+            ->first();
+
+        // if like exists
+        if($existing_like){
+            $existing_like->delete();
+            return $this->apiResponse(null,'Post unliked successfully',200);
+        }
         $like=PostLike::create([
             'user_id'=>Auth()->User()->id,
             'post_id'=>$request->post_id
