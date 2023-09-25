@@ -36,6 +36,7 @@ Route::group([
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::middleware('jwt.verify')->controller(PostController::class)->group(function(){
     Route::post('posts/store','store')->name('posts.store');
     Route::get('posts','index')->name('posts');
@@ -46,41 +47,41 @@ Route::middleware('jwt.verify')->controller(PostController::class)->group(functi
 });
 
 Route::middleware('jwt.verify')->controller(CommentController::class)->group(function(){
-   Route::post('comments/store','store')->name('comments.store');
+   Route::post('comment/store','store')->name('comments.store');
    Route::get('comments/{post_id}','index')->name('comments');
-   Route::put('comments/update/{id}','update')->name('comments.update');
-   Route::delete('comments/delete/{id}','delete')->name('comments.delete');
+   Route::put('comment/update/{id}','update')->name('comments.update');
+   Route::delete('comment/delete/{id}','delete')->name('comments.delete');
    Route::post('comment/like')->name('comment.like');
 });
 
 Route::middleware('jwt.verify')->controller(ReplyController::class)->group(function(){
-   Route::post('replies/store','store')->name('replies.store');
+   Route::post('reply/store','store')->name('replies.store');
    Route::get('replies/{comment_id}','index')->name('replies');
-   Route::put('replies/update/{id}','update')->name('replies.update');
-   Route::delete('replies/delete/{id}','delete')->name('replies.delete');
+   Route::put('reply/update/{id}','update')->name('replies.update');
+   Route::delete('reply/delete/{id}','delete')->name('replies.delete');
    Route::post('reply/like','like')->name('reply.like');
 });
 
 Route::middleware('jwt.verify')->controller(ReplyReplyController::class)->group(function(){
-    Route::post('replyreplies/store','store')->name('reply_replies.store');
+    Route::post('replyreply/store','store')->name('reply_replies.store');
     Route::get('replyreplies/{reply_id}','index')->name('reply_replies');
-    Route::put('replyreplies/update/{id}','update')->name('reply_replies.update');
-    Route::delete('replyreplies/delete/{id}','delete')->name('reply_replies.delete');
+    Route::put('replyreply/update/{id}','update')->name('reply_replies.update');
+    Route::delete('replyreply/delete/{id}','delete')->name('reply_replies.delete');
     Route::post('replyreply/like','like')->name('reply_replies.like');
 });
 
 Route::middleware('jwt.verify')->controller(UserController::class)->group(function(){
-   Route::post('users/follow','follow')->name('users.follow');
-   Route::post('users/block','block')->name('users.block');
+   Route::post('user/follow','follow')->name('users.follow');
+   Route::post('user/block','block')->name('users.block');
 });
 
 Route::middleware(['jwt.verify','admin'])->controller(AdminController::class)->group(function(){
-   Route::post('admins/block')->name('admins.block');
+   Route::post('admin/block')->name('admins.block');
 });
 
 Route::middleware(['jwt.verify','admin'])->controller(CategoryController::class)->group(function(){
-    Route::post('categories/store','store')->name('categories.store');
+    Route::post('category/store','store')->name('categories.store');
     Route::get('categories/{comment_id}','index')->name('categories');
-    Route::put('categories/update/{id}','update')->name('categories.update');
-    Route::delete('categories/delete/{id}','delete')->name('categories.delete');
+    Route::put('category/update/{id}','update')->name('categories.update');
+    Route::delete('category/delete/{id}','delete')->name('categories.delete');
 });
