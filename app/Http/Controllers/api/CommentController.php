@@ -18,7 +18,6 @@ class CommentController extends Controller
     public function store(CommentRequest $request){
         $comment=Comment::create([
             'body'=>$request->body,
-            'photo'=>$request->photo,
             'user_id'=>Auth()->User()->id,
             'post_id'=>$request->post_id
         ]);
@@ -50,7 +49,6 @@ class CommentController extends Controller
             }
             $comment->update([
                 'body' => $request->body,
-                'photo' => $request->photo,
             ]);
             $comment = Comment::find($id);
             return $this->apiResponse($comment, 'Comment updated successfully', 200);

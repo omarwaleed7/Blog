@@ -22,7 +22,6 @@ class PostController extends Controller
             'body'=>$request->body,
             'user_id'=>Auth()->User()->id,
             'category_id'=>$request->category_id,
-            'photo'=>$request->photo
         ]);
         return $this->apiResponse($post,'Post stored successfully',201);
     }
@@ -74,7 +73,6 @@ class PostController extends Controller
                 'body'=>$request->body,
                 'user_id'=>Auth()->User()->id,
                 'category_id'=>$request->category_id,
-                'photo'=>$request->photo
             ]);
             $updated_post=Post::find($id);
             return $this->apiResponse($updated_post,'Post updated successfully',200);

@@ -18,7 +18,6 @@ class ReplyReplyController extends Controller
     public function store(ReplyReplyRequest $request){
         $reply_reply=ReplyReply::create([
             'body'=>$request->body,
-            'photo'=>$request->photo,
             'user_id'=>Auth()->User()->id,
             'reply_id'=>$request->reply_id
         ]);
@@ -50,7 +49,6 @@ class ReplyReplyController extends Controller
             }
             $reply_reply->update([
                 'body'=>$request->body,
-                'photo'=>$request->photo
             ]);
             $updated_reply_reply=ReplyReply::find($id);
             return $this->apiResponse($updated_reply_reply,'Reply reply updated successfully',200);

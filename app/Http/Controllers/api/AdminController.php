@@ -13,10 +13,12 @@ class AdminController extends Controller
 
     // block a user
     public function block(Request $request){
+
         // check if admin already blocked user
         $existing_block = AdminBlock::where('admin_id', Auth()->User()->id)
             ->where('following_id', $request->blocked_id)
             ->first();
+
         // if block exists
         if($existing_block){
             $existing_block->delete();

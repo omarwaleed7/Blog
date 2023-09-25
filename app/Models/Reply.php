@@ -10,7 +10,6 @@ class Reply extends Model
     use HasFactory;
     protected $fillable=[
         'body',
-        'photo',
         'user_id',
         'comment_id'
     ];

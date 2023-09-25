@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('reply_replies', function (Blueprint $table) {
             $table->id();
             $table->text('body');
-            $table->text('photo')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('reply_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
