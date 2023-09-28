@@ -30,14 +30,14 @@ This is Blog APi using Laravel and MySQL, this API simplifies blog management, f
 - **Delete Comments:** Remove comments.
 - **List Comments:** View comments associated with blog posts.
 
-#### Replies
+### Replies
 
 - **Add Replies:** Enable users to reply to comments.
 - **Edit Replies:** Modify reply content.
 - **Delete Replies:** Remove replies.
 - **List Replies:** View replies associated with comments.
  
-- ### Reply Replies
+### Reply Replies
 
 - **Add Reply Replies:** Allow users to reply to replies.
 - **Edit Reply Replies:** Modify reply reply content.
@@ -58,7 +58,7 @@ This is Blog APi using Laravel and MySQL, this API simplifies blog management, f
 - **Like Replies:** Allow users to like and unlike replies.
 - **Like Reply Replies:** Allow users to like and unlike reply replies.
 
-#### Following System
+### Following System
 
 - **Follow Authors:** Implement a following system, allowing users to follow and unfollow their favorite users.
 - **Block Feature:** Allow users to block and unblock others.
