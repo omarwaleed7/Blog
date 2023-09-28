@@ -95,7 +95,6 @@ The Blog API uses MySQL as its underlying database system. You can configure the
 Click the image below to view the database schema:
 
 <a href="https://drive.google.com/uc?export=view&id=1GjGRF-zr6naOSh473Z8qYDr1yB69pVj0" target="_blank">
-  <img src="https://drive.google.com/uc?export=view&id=1GjGRF-zr6naOSh473Z8qYDr1yB69pVj0" alt="Database Schema" />
 </a>
 
 ## Contributing
