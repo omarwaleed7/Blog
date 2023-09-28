@@ -23,8 +23,6 @@ This is Blog APi using Laravel and MySQL, this API simplifies blog management, f
 - **User Authentication:** Secure access with JWT (JSON Web Tokens) authentication.
 - **User Roles:** Implement user roles, including admin and user roles.
 
-### Interaction
-
 #### Comments
 
 - **Add Comments:** Allow users to comment on blog posts.
@@ -94,7 +92,7 @@ The Blog API uses MySQL as its underlying database system. You can configure the
 
 Click the image below to view the database schema:
 
-<a href="https://drive.google.com/uc?export=view&id=1GjGRF-zr6naOSh473Z8qYDr1yB69pVj0" target="_blank">
+<a href="https://drive.google.com/file/d/1qdlT6pL1LUwXXo56P5QBCttgqJlXvmEJ/view" target="_blank">
     Database Schema
 </a>
 
