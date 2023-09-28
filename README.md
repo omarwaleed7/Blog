@@ -23,21 +23,21 @@ This is Blog APi using Laravel and MySQL, this API simplifies blog management, f
 - **User Authentication:** Secure access with JWT (JSON Web Tokens) authentication.
 - **User Roles:** Implement user roles, including admin and user roles.
 
-#### Comments
+### Comments
 
 - **Add Comments:** Allow users to comment on blog posts.
 - **Edit Comments:** Modify comments.
 - **Delete Comments:** Remove comments.
 - **List Comments:** View comments associated with blog posts.
 
-##### Replies
+#### Replies
 
 - **Add Replies:** Enable users to reply to comments.
 - **Edit Replies:** Modify reply content.
 - **Delete Replies:** Remove replies.
 - **List Replies:** View replies associated with comments.
  
-- ##### Reply Replies
+- ### Reply Replies
 
 - **Add Reply Replies:** Allow users to reply to replies.
 - **Edit Reply Replies:** Modify reply reply content.
@@ -51,7 +51,7 @@ This is Blog APi using Laravel and MySQL, this API simplifies blog management, f
 - **Delete Categories:** Admins can remove categories when needed.
 - **List Categories:** Admins can view a list of existing categories.
 
-#### Likes
+### Likes
 
 - **Like Posts:** Allow users to like and unlike posts.
 - **Like Comments:** Allow users to like and unlike comments.
