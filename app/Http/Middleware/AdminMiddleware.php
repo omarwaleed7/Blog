@@ -19,9 +19,11 @@ class AdminMiddleware
     {
 
         // check if user is admin
-        if(Auth()->User()->role!==1){
+        if(Auth()->User()->role==1){
+            return $next($request);
+        }
+        else{
             return $this->apiResponse(null,'Unauthorized',403);
         }
-        return $next($request);
     }
 }

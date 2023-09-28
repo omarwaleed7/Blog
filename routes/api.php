@@ -81,7 +81,7 @@ Route::middleware(['jwt.verify','admin'])->controller(AdminController::class)->g
 
 Route::middleware(['jwt.verify','admin'])->controller(CategoryController::class)->group(function(){
     Route::post('category/store','store')->name('categories.store');
-    Route::get('categories/{comment_id}','index')->name('categories');
+    Route::get('categories','index')->name('categories');
     Route::put('category/update/{id}','update')->name('categories.update');
     Route::delete('category/delete/{id}','delete')->name('categories.delete');
 });

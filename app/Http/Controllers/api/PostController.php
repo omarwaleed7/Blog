@@ -28,8 +28,7 @@ class PostController extends Controller
 
     // show all posts
     public function index(){
-        $posts=Post::where('user_id')->get();
-
+        $posts=Post::all();
         //check if posts
         if($posts){
             return $this->apiResponse($posts,'Posts retrieved successfully',200);
@@ -71,7 +70,6 @@ class PostController extends Controller
             $post->update([
                 'title'=>$request->title,
                 'body'=>$request->body,
-                'user_id'=>Auth()->User()->id,
                 'category_id'=>$request->category_id,
             ]);
             $updated_post=Post::find($id);

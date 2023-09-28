@@ -24,7 +24,6 @@ class ReplyReplyRequest extends FormRequest
     {
         return [
             'body'=>'required',
-            'photo'=>'image',
             'user_id'=>'required|integer',
             'reply_id'=>'required|integer',
             'reply_reply_id'=>'required|integer'

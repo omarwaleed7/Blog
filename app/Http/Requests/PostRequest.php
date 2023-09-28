@@ -25,10 +25,8 @@ class PostRequest extends FormRequest
         return [
             'title'=>'required|max:255|string',
             'body'=>'required|string',
-            'photo'=>'image',
             'user_id'=>'required|integer',
             'category_id'=>'required|integer',
-            'post_id'=>'required|integer'
         ];
     }
 
