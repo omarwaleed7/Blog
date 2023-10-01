@@ -1,5 +1,5 @@
 # Blog
-This is Blog APi using Laravel and MySQL, this API simplifies blog management, featuring user authentication, post management, and a following system.
+This is Blog API using Laravel and MySQL, this API simplifies blog management, featuring user authentication, post management, and a following system.
 # Blog API
 
 ## Table of Contents
