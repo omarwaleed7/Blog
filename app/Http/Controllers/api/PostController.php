@@ -58,6 +58,9 @@ class PostController extends Controller
 
     // update a post
     public function update(PostRequest $request,$id){
+        $validate=$request->validate([
+            'body'=>'required'
+        ]);
         $post=Post::find($id);
 
         // check if post
@@ -107,7 +110,7 @@ class PostController extends Controller
         ]);
     }
     // store a like
-    public function like(PostRequest $request){
+    public function like(Request $request){
 
         // check if user already liked post
         $existing_like = PostLike::where('user_id', Auth()->User()->id)

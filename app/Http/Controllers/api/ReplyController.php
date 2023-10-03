@@ -36,7 +36,10 @@ class ReplyController extends Controller
     }
 
     // update a reply
-    public function update(ReplyRequest $request,$id){
+    public function update(Request $request,$id){
+        $validate=$request->validate([
+            'body'=>'required'
+        ]);
         $reply=Reply::find($id);
 
         // check if reply

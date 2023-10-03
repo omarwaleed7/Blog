@@ -43,7 +43,7 @@ Route::middleware('jwt.verify')->controller(PostController::class)->group(functi
     Route::get('post/{id}','show')->name('post');
     Route::put('post/update/{id}','update')->name('posts.update');
     Route::delete('post/delete/{id}','delete')->name('posts.delete');
-    Route::post('post/like')->name('post.like');
+    Route::post('post/like','like')->name('post.like');
 });
 
 Route::middleware('jwt.verify')->controller(CommentController::class)->group(function(){
@@ -81,7 +81,10 @@ Route::middleware(['jwt.verify','admin'])->controller(AdminController::class)->g
 
 Route::middleware(['jwt.verify','admin'])->controller(CategoryController::class)->group(function(){
     Route::post('category/store','store')->name('categories.store');
-    Route::get('categories','index')->name('categories');
     Route::put('category/update/{id}','update')->name('categories.update');
     Route::delete('category/delete/{id}','delete')->name('categories.delete');
+});
+
+Route::controller(CategoryController::class)->group(function(){
+    Route::get('categories','index')->name('categories');
 });

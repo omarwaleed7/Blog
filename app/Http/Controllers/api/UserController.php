@@ -13,9 +13,9 @@ class UserController extends Controller
     use ApiResponseTrait;
 
     // follow a user
-    public function follow(){
-        $this->following();
-        $this->follower();
+    public function follow(Request $request){
+        $this->following($request);
+        $this->follower($request);
         return $this->apiResponse(null,'Follow stored successfully',204);
     }
 

@@ -38,8 +38,10 @@ class CommentController extends Controller
     }
 
     // update a comment
-    public function update(CommentRequest $request,$id){
-
+    public function update(Request $request,$id){
+        $validate=$request->validate([
+            'body'=>'required'
+        ]);
         // check if comment
         $comment = Comment::find($id);
         if ($comment) {

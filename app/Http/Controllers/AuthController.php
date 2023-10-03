@@ -45,6 +45,7 @@ class AuthController extends Controller
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|min:6',
+            'role' => 'required'
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -53,7 +54,6 @@ class AuthController extends Controller
             $validator->validated(),
             ['password' => bcrypt($request->password)]
         ));
-        $this->mailRegistered($request->name, $request->email);
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user
@@ -99,9 +99,5 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()
         ]);
-    }
-    public function mailRegistered($name, $email)
-    {
-        Mail::to($email)->send(new RegisterMail($name));
     }
 }
