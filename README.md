@@ -68,7 +68,7 @@ This is Blog API using Laravel and MySQL, this API simplifies blog management, f
 
 To get started with the Blog API, follow these steps:
 1. **Clone the Repository:**
-git clone https://github.com/your-username/blog-api.git
+git clone https://github.com/your-username/Blog.git
 2. **Navigate to the Project Directory:**
 cd blog-api
 3. **Install Dependencies:**
